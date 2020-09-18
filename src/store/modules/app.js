@@ -49,7 +49,7 @@ const actions = {
 }
 
 export default {
-  namespaced: true,
+  namespaced: true, // 表示开启命名空间，要想访问getters，mutation，actions需要用以下形式,例如['app/TOGGLE_SIDEBAR']，使用辅助函数createNamespacedHelpers优化mapstate等辅助函数的使用
   state,
   mutations,
   actions

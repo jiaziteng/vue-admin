@@ -1,6 +1,6 @@
 /**
-* I think element-ui's default theme color is too light for long-term use.
-* So I modified the default color and you can modify it to your liking.
+*我认为element-ui的默认主题颜色太浅，无法长期使用。
+*因此，我修改了默认颜色，您可以根据自己的喜好对其进行修改。
 **/
 
 /* theme color */
@@ -24,7 +24,7 @@ $--font-path: "~element-ui/lib/theme-chalk/fonts";
 
 @import "~element-ui/packages/theme-chalk/src/index";
 
-// the :export directive is the magic sauce for webpack
+// ：export指令是webpack的神奇调味料
 // https://www.bluematador.com/blog/how-to-share-variables-between-js-and-sass
 :export {
   theme: $--color-primary;

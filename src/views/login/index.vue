@@ -74,6 +74,7 @@
 </template>
 
 <script>
+// 在这个登录的组件中，socialsign时用来展示第三方登录
 import { validUsername } from '@/utils/validate'
 import SocialSign from './components/SocialSignin'
 
@@ -104,11 +105,11 @@ export default {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
         password: [{ required: true, trigger: 'blur', validator: validatePassword }]
       },
-      passwordType: 'password',
-      capsTooltip: false,
-      loading: false,
+      passwordType: 'password', // 通过控制el-input的类型来控制密码的显示
+      capsTooltip: false, // 控制当输入的密码为大写字母时的提示
+      loading: false, // 控制登录时登录按钮的loading
       showDialog: false,
-      redirect: undefined,
+      redirect: undefined, // 实现第三方登录时的重定向或者token失效后的重新登录
       otherQuery: {}
     }
   },
@@ -129,8 +130,10 @@ export default {
   },
   mounted() {
     if (this.loginForm.username === '') {
+      // 如果账号为空,则自动聚焦到账号框
       this.$refs.username.focus()
     } else if (this.loginForm.password === '') {
+      // 如果账号有值，密码无值，则聚焦到密码框
       this.$refs.password.focus()
     }
   },
@@ -139,10 +142,12 @@ export default {
   },
   methods: {
     checkCapslock(e) {
+      // 检测输入的字母是否大小写
       const { key } = e
       this.capsTooltip = key && key.length === 1 && (key >= 'A' && key <= 'Z')
     },
     showPwd() {
+      // 动态切换密码的显示
       if (this.passwordType === 'password') {
         this.passwordType = ''
       } else {
@@ -156,6 +161,7 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
+          // 这里由于访问的是user模块的login，因此为'user/login'，从这里我们进入登录权限的处理
           this.$store.dispatch('user/login', this.loginForm)
             .then(() => {
               this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
@@ -171,6 +177,7 @@ export default {
       })
     },
     getOtherQuery(query) {
+      // 将除了'redirect'的查询参数外的查询参数放到acc中
       return Object.keys(query).reduce((acc, cur) => {
         if (cur !== 'redirect') {
           acc[cur] = query[cur]

@@ -6,18 +6,18 @@ import 'nprogress/nprogress.css' // progress bar style
 import { getToken } from '@/utils/auth' // get token from cookie
 import getPageTitle from '@/utils/get-page-title'
 
-NProgress.configure({ showSpinner: false }) // NProgress Configuration
+NProgress.configure({ showSpinner: false }) // NProgress Configuration 进度环配置,禁用进度环即右侧的圆圈
 
-const whiteList = ['/login', '/auth-redirect'] // no redirect whitelist
+const whiteList = ['/login', '/auth-redirect'] // no redirect whitelist 不需要重定向的白名单
 
 router.beforeEach(async(to, from, next) => {
-  // start progress bar
+  // start progress bar 开始调用进度条
   NProgress.start()
 
-  // set page title
+  // set page title 设置标题为路由元信息中所包含的标题
   document.title = getPageTitle(to.meta.title)
 
-  // determine whether the user has logged in
+  // 确定用户是否已登录
   const hasToken = getToken()
 
   if (hasToken) {

@@ -8,20 +8,20 @@ const image_uri = 'https://wpimg.wallstcn.com/e4558086-631c-425c-9430-56ffb46e70
 
 for (let i = 0; i < count; i++) {
   List.push(Mock.mock({
-    id: '@increment',
-    timestamp: +Mock.Random.date('T'),
-    author: '@first',
-    reviewer: '@first',
-    title: '@title(5, 10)',
+    id: '@increment',//生成一个全局自增的整数
+    timestamp: +Mock.Random.date('T'),//随机生成时间戳
+    author: '@first',//随机生成英文名
+    reviewer: '@first',//随即生成英文名
+    title: '@title(5, 10)',//随机生成一句标题，其中每个单词的首字母大写
     content_short: 'mock data',
-    content: baseContent,
-    forecast: '@float(0, 100, 2, 2)',
-    importance: '@integer(1, 3)',
-    'type|1': ['CN', 'US', 'JP', 'EU'],
-    'status|1': ['published', 'draft'],
-    display_time: '@datetime',
+    content: baseContent,//
+    forecast: '@float(0, 100, 2, 2)',//生成浮点数,值为0-100,且小数点为两位
+    importance: '@integer(1, 3)',//生成1-3的随机整数
+    'type|1': ['CN', 'US', 'JP', 'EU'],//从属性值 ['CN', 'US', 'JP', 'EU'] 中随机选取 1 个元素，作为最终值。
+    'status|1': ['published', 'draft'],//同上
+    display_time: '@datetime',//生成随机的时间字符串，例如1977-11-17 03:50:15
     comment_disabled: true,
-    pageviews: '@integer(300, 5000)',
+    pageviews: '@integer(300, 5000)',//生成300-5000的随机整数
     image_uri,
     platforms: ['a-platform']
   }))
@@ -32,7 +32,7 @@ module.exports = [
     url: '/vue-element-admin/article/list',
     type: 'get',
     response: config => {
-      const { importance, type, title, page = 1, limit = 20, sort } = config.query
+      const { importance, type, title, page = 1, limit = 20, sort } = config.query//es6对象解构
 
       let mockList = List.filter(item => {
         if (importance && item.importance !== +importance) return false

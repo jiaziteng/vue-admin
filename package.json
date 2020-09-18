@@ -11,7 +11,7 @@
     "preview": "node build/index.js --preview",
     "new": "plop",
     "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml",
-    "test:unit": "jest --clearCache && vue-cli-service test:unit",
+    "test:unit": "vue-cli-service test:unit --clearCache && vue-cli-service test:unit --coverage",
     "test:ci": "npm run lint && npm run test:unit"
   },
   "dependencies": {

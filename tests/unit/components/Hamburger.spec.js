@@ -6,6 +6,7 @@ describe('Hamburger.vue', () => {
     const mockFn = jest.fn()
     wrapper.vm.$on('toggleClick', mockFn)
     wrapper.find('.hamburger').trigger('click')
+    //断言mockfn被调用
     expect(mockFn).toBeCalled()
   })
   it('prop isActive', () => {

@@ -21,12 +21,12 @@ import './utils/error-log' // error log
 import * as filters from './filters' // global filters
 
 /**
- * If you don't want to use mock-server
- * you want to use MockJs for mock api
- * you can execute: mockXHR()
+ *如果您不想使用模拟服务器
+ *您想将MockJs用于模拟api
+ *您可以执行：mockXHR（）
  *
- * Currently MockJs will be used in the production environment,
- * please remove it before going online ! ! !
+ *目前，MockJs将用于生产环境，
+ *请先删除它，然后再上网！ ！ ！
  */
 if (process.env.NODE_ENV === 'production') {
   const { mockXHR } = require('../mock')

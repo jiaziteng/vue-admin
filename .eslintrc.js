@@ -1,18 +1,24 @@
 module.exports = {
   root: true,
+  //指定语法分析器,以便于更好的分析语法
   parserOptions: {
     parser: 'babel-eslint',
     sourceType: 'module'
   },
+  //在这定义全局变量,加入我们引进jquery这样的全局变量需要在这里进行设置
+  // globals:{
+
+  // },
   env: {
     browser: true,
     node: true,
     es6: true,
   },
+  //也可换为plugin:vue/essential不过最好别换，提升代码规范，具体的代码规范可去vue官网的风格指南中查看
   extends: ['plugin:vue/recommended', 'eslint:recommended'],
 
-  // add your custom rules here
-  //it is base on https://github.com/vuejs/eslint-config-vue
+  //在此处添加您的自定义规则
+  //它基于https://github.com/vuejs/eslint-config-vue
   rules: {
     "vue/max-attributes-per-line": [2, {
       "singleline": 10,
